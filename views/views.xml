@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_transitops_vehicle_tree" model="ir.ui.view">
+            <field name="name">transitops.vehicle.tree</field>
+            <field name="model">transitops.vehicle</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="registration_number"/>
+                    <field name="vehicle_type"/>
+                    <field name="max_load_capacity"/>
+                    <field name="odometer"/>
+                    <field name="acquisition_cost"/>
+                    <field name="revenue"/>
+                    <field name="total_operational_cost"/>
+                    <field name="roi"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_transitops_vehicle_form" model="ir.ui.view">
+            <field name="name">transitops.vehicle.form</field>
+            <field name="model">transitops.vehicle</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Specifications">
+                                <field name="registration_number"/>
+                                <field name="vehicle_type"/>
+                                <field name="max_load_capacity"/>
+                                <field name="odometer"/>
+                            </group>
+                            <group string="Financial Performance">
+                                <field name="acquisition_cost"/>
+                                <field name="revenue"/>
+                                <field name="total_operational_cost" readonly="1" class="text-danger font-weight-bold" style="font-size: 1.3em; color: #d9534f;"/>
+                                <field name="roi" readonly="1" class="text-success font-weight-bold" style="font-size: 1.3em; color: #5cb85c;"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Trips">
+                                <field name="trip_ids" readonly="1">
+                                    <tree>
+                                        <field name="source"/>
+                                        <field name="destination"/>
+                                        <field name="driver_id"/>
+                                        <field name="cargo_weight"/>
+                                        <field name="planned_distance"/>
+                                        <field name="status"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Maintenance Logs">
+                                <field name="maintenance_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="maintenance_date"/>
+                                        <field name="maintenance_type"/>
+                                        <field name="cost"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Expenses">
+                                <field name="expense_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="date"/>
+                                        <field name="expense_type"/>
+                                        <field name="cost"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_transitops_driver_tree" model="ir.ui.view">
+            <field name="name">transitops.driver.tree</field>
+            <field name="model">transitops.driver</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="license_number"/>
+                    <field name="license_category"/>
+                    <field name="license_expiry_date"/>
+                    <field name="contact_number"/>
+                    <field name="safety_score"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_transitops_driver_form" model="ir.ui.view">
+            <field name="name">transitops.driver.form</field>
+            <field name="model">transitops.driver</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="License Information">
+                                <field name="license_number"/>
+                                <field name="license_category"/>
+                                <field name="license_expiry_date"/>
+                            </group>
+                            <group string="Contact &amp; Performance">
+                                <field name="contact_number"/>
+                                <field name="safety_score"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_transitops_trip_tree" model="ir.ui.view">
+            <field name="name">transitops.trip.tree</field>
+            <field name="model">transitops.trip</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="source"/>
+                    <field name="destination"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="cargo_weight"/>
+                    <field name="planned_distance"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_transitops_trip_form" model="ir.ui.view">
+            <field name="name">transitops.trip.form</field>
+            <field name="model">transitops.trip</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Route Details">
+                                <field name="source"/>
+                                <field name="destination"/>
+                                <field name="planned_distance"/>
+                            </group>
+                            <group string="Assignments">
+                                <field name="vehicle_id"/>
+                                <field name="driver_id"/>
+                                <field name="cargo_weight"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_transitops_maintenance_tree" model="ir.ui.view">
+            <field name="name">transitops.maintenance.tree</field>
+            <field name="model">transitops.maintenance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="vehicle_id"/>
+                    <field name="maintenance_type"/>
+                    <field name="maintenance_date"/>
+                    <field name="cost"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_transitops_maintenance_form" model="ir.ui.view">
+            <field name="name">transitops.maintenance.form</field>
+            <field name="model">transitops.maintenance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="vehicle_id"/>
+                                <field name="maintenance_type"/>
+                            </group>
+                            <group>
+                                <field name="maintenance_date"/>
+                                <field name="cost"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_transitops_expense_tree" model="ir.ui.view">
+            <field name="name">transitops.expense.tree</field>
+            <field name="model">transitops.expense</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="vehicle_id"/>
+                    <field name="expense_type"/>
+                    <field name="date"/>
+                    <field name="cost"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_transitops_expense_form" model="ir.ui.view">
+            <field name="name">transitops.expense.form</field>
+            <field name="model">transitops.expense</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="vehicle_id"/>
+                                <field name="expense_type"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="cost"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_transitops_vehicle" model="ir.actions.act_window">
+            <field name="name">Vehicles</field>
+            <field name="res_model">transitops.vehicle</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_transitops_driver" model="ir.actions.act_window">
+            <field name="name">Drivers</field>
+            <field name="res_model">transitops.driver</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_transitops_trip" model="ir.actions.act_window">
+            <field name="name">Trips</field>
+            <field name="res_model">transitops.trip</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_transitops_maintenance" model="ir.actions.act_window">
+            <field name="name">Maintenance</field>
+            <field name="res_model">transitops.maintenance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="action_transitops_expense" model="ir.actions.act_window">
+            <field name="name">Expenses</field>
+            <field name="res_model">transitops.expense</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_transitops_root" name="TransitOps"/>
+        <menuitem id="menu_transitops_vehicle" name="Vehicles" parent="menu_transitops_root" action="action_transitops_vehicle"/>
+        <menuitem id="menu_transitops_driver" name="Drivers" parent="menu_transitops_root" action="action_transitops_driver"/>
+        <menuitem id="menu_transitops_trip" name="Trips" parent="menu_transitops_root" action="action_transitops_trip"/>
+        <menuitem id="menu_transitops_maintenance" name="Maintenance" parent="menu_transitops_root" action="action_transitops_maintenance"/>
+        <menuitem id="menu_transitops_expense" name="Expenses" parent="menu_transitops_root" action="action_transitops_expense"/>
+    </data>
+</odoo>

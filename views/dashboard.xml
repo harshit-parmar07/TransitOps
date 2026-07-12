@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_transitops_dashboard_kanban" model="ir.ui.view">
+            <field name="name">transitops.dashboard.kanban</field>
+            <field name="model">transitops.dashboard</field>
+            <field name="arch" type="xml">
+                <kanban create="false" delete="false" edit="false">
+                    <field name="name"/>
+                    <field name="active_vehicles"/>
+                    <field name="available_vehicles"/>
+                    <field name="maintenance_vehicles"/>
+                    <field name="active_trips"/>
+                    <field name="pending_trips"/>
+                    <field name="drivers_on_duty"/>
+                    <field name="fleet_utilization"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_dashboard">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_primary">
+                                        <h2><field name="name"/></h2>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content mt-3">
+                                    <div class="row">
+                                        <div class="col-6 col-md-4 mb-3 text-center">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="text-muted small uppercase">Active Vehicles</div>
+                                                <div class="h3 font-weight-bold text-primary"><field name="active_vehicles"/></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-4 mb-3 text-center">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="text-muted small uppercase">Available Vehicles</div>
+                                                <div class="h3 font-weight-bold text-success"><field name="available_vehicles"/></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-4 mb-3 text-center">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="text-muted small uppercase">In Maintenance</div>
+                                                <div class="h3 font-weight-bold text-warning"><field name="maintenance_vehicles"/></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-4 mb-3 text-center">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="text-muted small uppercase">Active Trips</div>
+                                                <div class="h3 font-weight-bold text-info"><field name="active_trips"/></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-4 mb-3 text-center">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="text-muted small uppercase">Pending Trips</div>
+                                                <div class="h3 font-weight-bold text-secondary"><field name="pending_trips"/></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-4 mb-3 text-center">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="text-muted small uppercase">Drivers On Duty</div>
+                                                <div class="h3 font-weight-bold text-dark"><field name="drivers_on_duty"/></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 justify-content-center">
+                                        <div class="col-12 col-md-8 text-center">
+                                            <div class="border rounded p-4 bg-primary text-white">
+                                                <div class="text-uppercase font-weight-bold">Fleet Utilization</div>
+                                                <div class="h1 font-weight-bold my-2"><field name="fleet_utilization"/>%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="action_transitops_dashboard" model="ir.actions.act_window">
+            <field name="name">Dashboard</field>
+            <field name="res_model">transitops.dashboard</field>
+            <field name="view_mode">kanban</field>
+        </record>
+        <menuitem id="menu_transitops_dashboard" name="Dashboard" parent="menu_transitops_root" action="action_transitops_dashboard" sequence="1"/>
+    </data>
+</odoo>
